@@ -22,4 +22,12 @@ public class ResponseAndStatus<T> {
     public T getResponseData() {
         return responseData;
     }
+
+    @Override
+    public String toString() {
+        return "ResponseAndStatus{" +
+                "status=" + status +
+                ", responseData=" + responseData +
+                '}';
+    }
 }

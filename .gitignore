@@ -18,6 +18,7 @@ release.properties
 *.ipr
 *.iws
 classes
+.gradle/
 
 obj
 
