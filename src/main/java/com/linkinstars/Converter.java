@@ -1,6 +1,7 @@
 package com.linkinstars;
 
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -33,6 +34,16 @@ public class Converter {
      */
     public static <T> T responseBodyConverter(Class<T> object, String jsonStr) {
         return JSONObject.parseObject(jsonStr, object);
+    }
+
+    /**
+     * 将返回json字符串对象转换为实体对象
+     * @param typeReference 实体对象类型
+     * @param jsonStr json字符串
+     * @return 实体对象
+     */
+    public static <T> T responseBodyConverter(TypeReference<T> typeReference, String jsonStr) {
+        return JSONObject.parseObject(jsonStr, typeReference);
     }
 
     /**

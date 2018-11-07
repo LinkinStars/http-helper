@@ -23,6 +23,14 @@ public class ResponseAndStatus<T> {
         return responseData;
     }
 
+    /**
+     * 判断当前请求是否成功
+     * @return true：请求成功； false：请求失败
+     */
+    public boolean isSuccess(){
+        return this.status == Status.SUCCESS;
+    }
+    
     @Override
     public String toString() {
         return "ResponseAndStatus{" +

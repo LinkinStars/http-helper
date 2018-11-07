@@ -1,6 +1,5 @@
 import com.linkinstars.HttpHelper;
 import com.linkinstars.ResponseAndStatus;
-import com.linkinstars.Status;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,19 +19,19 @@ public class Test {
         String geterrUrl = "http://127.0.0.1:8080/test/geterr";
 
         //1. 正常情况
-        ResponseAndStatus<TestObject> responseAndStatus = HttpHelper.getJson(getUrl, TestObject.class);
-        if (responseAndStatus.getStatus() == Status.SUCCESS) {
-            TestObject testObject = responseAndStatus.getResponseData();
-            System.out.println("请求成功返回： " + testObject.getName() + "   " + testObject.getVal());
+        ResponseAndStatus<CommonResponse> responseAndStatus = HttpHelper.getJson(getUrl, CommonResponse.class);
+        if (responseAndStatus.isSuccess()) {
+            CommonResponse commonResponse = responseAndStatus.getResponseData();
+            System.out.println("请求成功返回： " + commonResponse.getCode() + "   " + commonResponse.getMessage());
         } else {
             System.out.println("请求失败返回： " + responseAndStatus.getResponseData());
         }
 
         //2. 返回值异常
-        responseAndStatus = HttpHelper.getJson(geterrUrl, TestObject.class);
-        if (responseAndStatus.getStatus() == Status.SUCCESS) {
-            TestObject testObject = responseAndStatus.getResponseData();
-            System.out.println("请求成功返回： " + testObject.getName() + "   " + testObject.getVal());
+        responseAndStatus = HttpHelper.getJson(geterrUrl, CommonResponse.class);
+        if (responseAndStatus.isSuccess()) {
+            CommonResponse commonResponse = responseAndStatus.getResponseData();
+            System.out.println("请求成功返回： " + commonResponse.getCode() + "   " + commonResponse.getMessage());
         } else {
             System.out.println("请求失败返回： " + responseAndStatus.getStatus() + "'  " +  responseAndStatus.getResponseData());
         }
@@ -45,25 +44,26 @@ public class Test {
     public void postJsonUrl() {
         String postUrl = "http://127.0.0.1:8080/test/post";
         String posterrUrl = "http://127.0.0.1:8080/test/posterr";
-        
-        TestObject requesObject = new TestObject();
-        requesObject.setName("xxx");
-        requesObject.setVal(123);
+
+        SpecificData specificData = new SpecificData();
+        specificData.setId(1);
+        specificData.setName("xxx");
+        specificData.setVal("val");
 
         //1. 正常情况
-        ResponseAndStatus<TestObject> responseAndStatus = HttpHelper.postJson(postUrl, TestObject.class, requesObject);
-        if (responseAndStatus.getStatus() == Status.SUCCESS) {
-            TestObject testObject = responseAndStatus.getResponseData();
-            System.out.println("请求成功返回： " + testObject.getName() + "   " + testObject.getVal());
+        ResponseAndStatus<CommonResponse> responseAndStatus = HttpHelper.postJson(postUrl, CommonResponse.class, specificData);
+        if (responseAndStatus.isSuccess()) {
+            CommonResponse commonResponse = responseAndStatus.getResponseData();
+            System.out.println("请求成功返回： " + commonResponse.getCode() + "   " + commonResponse.getMessage());
         } else {
             System.out.println("请求失败返回： " + responseAndStatus.getResponseData());
         }
 
         //2. 返回值异常
-        responseAndStatus = HttpHelper.postJson(posterrUrl, TestObject.class, requesObject);
-        if (responseAndStatus.getStatus() == Status.SUCCESS) {
-            TestObject testObject = responseAndStatus.getResponseData();
-            System.out.println("请求成功返回： " + testObject.getName() + "   " + testObject.getVal());
+        responseAndStatus = HttpHelper.postJson(posterrUrl, CommonResponse.class, specificData);
+        if (responseAndStatus.isSuccess()) {
+            CommonResponse commonResponse = responseAndStatus.getResponseData();
+            System.out.println("请求成功返回： " + commonResponse.getCode() + "   " + commonResponse.getMessage());
         } else {
             System.out.println("请求失败返回： " + responseAndStatus.getStatus() + "'  " +  responseAndStatus.getResponseData());
         }
@@ -82,19 +82,19 @@ public class Test {
         requestForm.put("val", "123");
         
         //1. 正常情况
-        ResponseAndStatus<TestObject> responseAndStatus = HttpHelper.postForm(postUrl, TestObject.class, requestForm);
-        if (responseAndStatus.getStatus() == Status.SUCCESS) {
-            TestObject testObject = responseAndStatus.getResponseData();
-            System.out.println("请求成功返回： " + testObject.getName() + "   " + testObject.getVal());
+        ResponseAndStatus<CommonResponse> responseAndStatus = HttpHelper.postForm(postUrl, CommonResponse.class, requestForm);
+        if (responseAndStatus.isSuccess()) {
+            CommonResponse commonResponse = responseAndStatus.getResponseData();
+            System.out.println("请求成功返回： " + commonResponse.getCode() + "   " + commonResponse.getMessage());
         } else {
             System.out.println("请求失败返回： " + responseAndStatus.getResponseData());
         }
 
         //2. 返回值异常
-        responseAndStatus = HttpHelper.postForm(posterrUrl, TestObject.class, requestForm);
-        if (responseAndStatus.getStatus() == Status.SUCCESS) {
-            TestObject testObject = responseAndStatus.getResponseData();
-            System.out.println("请求成功返回： " + testObject.getName() + "   " + testObject.getVal());
+        responseAndStatus = HttpHelper.postForm(posterrUrl, CommonResponse.class, requestForm);
+        if (responseAndStatus.isSuccess()) {
+            CommonResponse commonResponse = responseAndStatus.getResponseData();
+            System.out.println("请求成功返回： " + commonResponse.getCode() + "   " + commonResponse.getMessage());
         } else {
             System.out.println("请求失败返回： " + responseAndStatus.getStatus() + "'  " +  responseAndStatus.getResponseData());
         }

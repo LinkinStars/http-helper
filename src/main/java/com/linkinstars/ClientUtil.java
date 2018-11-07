@@ -99,5 +99,4 @@ public class ClientUtil {
 
         return new ResponseAndStatus<>(Status.SUCCESS, jsonObject);
     }
-
 }
